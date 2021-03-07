@@ -70,6 +70,8 @@ if __name__ == "__main__":
         if message.author == client.user:
             return
 
+        print("Detected a new message wheee")
+
         userRegex = r'<@!([0-9])*>'
         quoteRegex = r'".*"'
 
