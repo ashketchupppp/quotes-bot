@@ -84,6 +84,7 @@ if __name__ == "__main__":
             await message.channel.send(helpMessage)
 
         elif re.search(commands["quoteadd"], message.content) != None:
+            print(f"Received quoteadd request: {message.content}")
             user = re.search(userRegex, message.content).group()
             quote = re.search(quoteRegex, message.content).group()
             time = datetime.datetime.now()
@@ -93,6 +94,7 @@ if __name__ == "__main__":
                 "user" : user,
                 "quote" : quote
             }
+            print(f"Inserting {quoteData}")
             quotes.insert_one(quoteData)
 
             response = f'Tell you what, those quotes are really moreish'
@@ -102,11 +104,13 @@ if __name__ == "__main__":
             await channel.send(buildQuote(quoteData))
 
         elif re.search(commands["randomquote"], message.content) != None:
+            print(f"Received randomquote request: {message.content}")
             user = re.search(userRegex, message.content)
             results = quotes.find({"user" : user.group()})
             resultsList = [x for x in results]
             if resultsList != []:
                 userQuote = random.choice(resultsList)
+                print(f"Found {userQuote}")
                 await message.channel.send(buildQuote(userQuote))
             else:
                 await message.channel.send("Couldn't find any quotes!")
