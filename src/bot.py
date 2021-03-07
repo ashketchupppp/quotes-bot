@@ -40,7 +40,12 @@ if __name__ == "__main__":
     args = parse_arguments(sys.argv[1:])
 
     # Create database
-    mongodb = pymongo.MongoClient(args.mongohost, args.mongoport)
+    try:
+        mongodb = pymongo.MongoClient(args.mongohost, args.mongoport)
+    except pymongo.errors.ConnectionFailure as e:
+        print(e)
+        exit(1)
+
     db = mongodb[args.dbname]
     quotes = db.quotes
 
