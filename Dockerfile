@@ -1,7 +1,7 @@
 FROM python:3.8-buster
 
-RUN python pip install discord
-RUN python pip install pymongo 
+RUN python -m pip install discord
+RUN python -m pip install pymongo 
 
 COPY . /discord-bot
 
