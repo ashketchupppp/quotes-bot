@@ -74,9 +74,9 @@ if __name__ == "__main__":
         quoteRegex = r'".*"'
 
         commands = {
-                "quoteadd" : r'super hans add quote <@!([0-9])*> ".*"',
-                "help" : r'super hans help me',
-                "randomquote" : r'super hans random quote <@!([0-9])*>'
+                "quoteadd" : client.user + r' add quote <@!([0-9])*> ".*"',
+                "help" : client.user + r' help me',
+                "randomquote" : client.user + r' random quote <@!([0-9])*>'
         }
         
         if re.search(commands["help"], message.content) != None:
