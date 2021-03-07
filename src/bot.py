@@ -9,6 +9,10 @@ import datetime
 def parse_arguments(args):
     parser = argparse.ArgumentParser()
 
+    parser.add_argument('-mh', '--mongohost', type=str,
+            help='The MongoDB hostname to use.', required=True, action="store")
+    parser.add_argument('-mp', '--mongoport', type=int,
+            help='The MongoDB port to use.', required=True, action="store")
     parser.add_argument('-d', '--dbname', type=str,
             help='The MongoDB collection to use.', required=True, action="store")
     parser.add_argument('-t', '--token', type=str,
@@ -36,7 +40,7 @@ if __name__ == "__main__":
     args = parse_arguments(sys.argv[1:])
 
     # Create database
-    mongodb = pymongo.MongoClient()
+    mongodb = pymongo.MongoClient(args.mongohost, args.mongoport)
     db = mongodb[args.dbname]
     quotes = db.quotes
 

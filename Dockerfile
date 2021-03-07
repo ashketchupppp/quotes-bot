@@ -5,4 +5,4 @@ RUN python -m pip install pymongo
 
 COPY . /discord-bot
 
-ENTRYPOINT ["/discord-bot/scripts/start_bot.sh"]
+ENTRYPOINT ["python", "/discord-bot/src/bot.py"]
