@@ -1,4 +1,3 @@
-#!/usr/bin/python3.7 -tt
 import sys
 import random
 import argparse
