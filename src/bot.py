@@ -42,7 +42,8 @@ if __name__ == "__main__":
     # Create database
     try:
         mongodb = pymongo.MongoClient(args.mongohost, args.mongoport)
-    except pymongo.errors.ConnectionFailure as e:
+    except Exception as e:
+        print(f"Encountered an exception whilst trying to connect to MongoDB: {args.mongohost}:{args.mongoport}")
         print(e)
         exit(1)
 
